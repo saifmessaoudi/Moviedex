@@ -14,4 +14,4 @@ Moviedex demonstrates modern Android development with Hilt, Coroutines, Flow , J
 
 Project purpose is architecture not UI 😀, feel free to do changes.
 
-If you have any feedback, please reach out to us at fake@fake.com
+If you have any feedback, please reach out to us at saif.messaoudi@esprit.tn
