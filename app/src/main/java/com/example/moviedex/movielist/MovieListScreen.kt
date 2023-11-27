@@ -193,7 +193,7 @@ fun MoviedexEntry(
             .background(
                 Brush.verticalGradient(
                     listOf(
-                        Color.LightGray,
+                        Color.White,
                         Color.White
                     )
                 )

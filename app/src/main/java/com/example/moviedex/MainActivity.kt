@@ -4,11 +4,13 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.remember
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.moviedex.moviedetails.MovieDetailScreen
 import com.example.moviedex.movielist.MovieListScreen
 import com.example.moviedex.ui.theme.MoviedexTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -16,6 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        installSplashScreen()
         super.onCreate(savedInstanceState)
         setContent {
             MoviedexTheme{
@@ -38,6 +41,9 @@ class MainActivity : ComponentActivity() {
                          val movieId = remember{
                              it.arguments?.getInt("movie_id")
                          }
+                        MovieDetailScreen(
+                            movieId = movieId ?: 0,
+                            navController = navController )
                     }
                 }
             }

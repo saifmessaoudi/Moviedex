@@ -36,7 +36,6 @@ class MovieListViewModel @Inject constructor(
     init {
         loadMoviePaginated()
     }
-
     fun searchMovieList(query: String){
         val listToSearch = if(isSearchStarting){
             movieList.value
@@ -84,6 +83,8 @@ class MovieListViewModel @Inject constructor(
                     loadError.value = result.message!!
                     isLoading.value = false
                 }
+
+                else -> {}
             }
         }
     }
