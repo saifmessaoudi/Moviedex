@@ -1,11 +1,16 @@
 package com.example.moviedex.di
 
+import android.content.Context
+import androidx.room.Database
 import com.example.moviedex.data.remote.MovieApi
+import com.example.moviedex.repository.FavoriteMovieDao
 import com.example.moviedex.repository.MovieRepository
+import com.example.moviedex.util.AppDataBase
 import com.example.moviedex.util.Constants.BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -25,6 +30,16 @@ object AppModule {
         api: MovieApi
     )= MovieRepository(api)
 
+    @Singleton
+    @Provides
+    fun provideFavoriteMovieDao(database: AppDataBase): FavoriteMovieDao {
+        return database.favoriteMovieDao()
+    }
+    @Singleton
+    @Provides
+    fun provideAppDatabase(@ApplicationContext context: Context): AppDataBase {
+        return AppDataBase.getDatabase(context)
+    }
     @Singleton
     @Provides
     fun provideMovieApi(): MovieApi {

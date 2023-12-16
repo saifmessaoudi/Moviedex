@@ -84,13 +84,14 @@ dependencies {
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.3'
 
     // Coroutine Lifecycle Scopes
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.3.1"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.6.2"
 
     // Coil
-    implementation("io.coil-kt:coil:1.5.0")
+    implementation("io.coil-kt:coil:2.5.0")
     implementation("io.coil-kt:coil-compose:2.5.0")
-    implementation "com.google.accompanist:accompanist-coil:0.10.0"
+    implementation "com.google.accompanist:accompanist-coil:0.15.0"
 
 
     //Dagger - Hilt
@@ -100,7 +101,11 @@ dependencies {
     implementation 'androidx.hilt:hilt-navigation-compose:1.1.0'
 
     //splashscreen
-    implementation 'androidx.core:core-splashscreen:1.0.0-beta02'
+    implementation 'androidx.core:core-splashscreen:1.1.0-alpha02'
 
+    // Room
+    implementation "androidx.room:room-runtime:2.6.1"
+    kapt "androidx.room:room-compiler:2.6.1"
+    implementation "androidx.room:room-ktx:2.6.1"
 
 }
