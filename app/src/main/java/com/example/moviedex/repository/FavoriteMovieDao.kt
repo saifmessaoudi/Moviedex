@@ -20,6 +20,6 @@ interface FavoriteMovieDao {
      suspend fun deleteFavorite(movie: FavoriteMovie)
 
      @Query("SELECT * FROM favorites WHERE id = :id")
-     fun getFavoriteById(id: Int): Flow<FavoriteMovie>
+     fun getFavoriteById(id: Int): FavoriteMovie
 
 }

@@ -10,6 +10,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.moviedex.favoritemovie.FavoritesMoviesScreen
 import com.example.moviedex.moviedetails.MovieDetailScreen
 import com.example.moviedex.movielist.MovieListScreen
 import com.example.moviedex.ui.theme.MoviedexTheme
@@ -44,6 +45,9 @@ class MainActivity : ComponentActivity() {
                         MovieDetailScreen(
                             movieId = movieId ?: 0,
                             navController = navController )
+                    }
+                    composable("favorites_screen"){
+                        FavoritesMoviesScreen(navController = navController)
                     }
                 }
             }

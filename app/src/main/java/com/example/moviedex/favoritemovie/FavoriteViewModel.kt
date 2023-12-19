@@ -16,8 +16,11 @@ class FavoriteViewModel @Inject constructor(
 )  : ViewModel() {
     val favoriteMovies: Flow<List<FavoriteMovie>> = favoriteMovieDao.getAllFavorites()
 
-    suspend fun isFavorite(movie: MovieDetails): Boolean {
-        return favoriteMovieDao.getFavoriteById(movie.id).firstOrNull() != null
+     fun isFavorite(movie: MovieDetails): Boolean {
+     if (favoriteMovieDao.getFavoriteById(movie.id) != null) {
+         return true
+     }
+         return false
     }
 
     suspend fun addFavorite(movie: MovieDetails) {

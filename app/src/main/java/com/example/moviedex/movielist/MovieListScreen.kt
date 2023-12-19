@@ -21,9 +21,13 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material.Button
 import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Favorite
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -64,13 +68,33 @@ fun MovieListScreen(
     ) {
         Column {
             Spacer(modifier = Modifier.height(20.dp))
-            Text(
-                text = "Moviedex",
-                fontSize = 42.sp,
-                color = Color.White,
-                fontFamily = Roboto,
-                modifier = Modifier.align(CenterHorizontally)
+            Row (
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp),
+                horizontalArrangement = Arrangement.SpaceBetween
+            
+            ) {
+
+                Text(
+                    text = "Moviedex",
+                    fontSize = 42.sp,
+                    color = Color.White,
+                    fontFamily = Roboto,
                 )
+                IconButton(onClick =
+                    {
+                        navController.navigate("favorites_screen")
+                    }
+                ) {
+                    Icon(
+                       imageVector = Icons.Outlined.Favorite,
+                        contentDescription = "Favorite Icon",
+                        tint = Color.Red
+                    )
+            }
+
+            }
             Spacer(modifier = Modifier.height(15.dp))
             Image(
                 painter = painterResource(id = R.drawable.logo1) ,
@@ -90,6 +114,7 @@ fun MovieListScreen(
                 viewModel.searchMovieList(it)
             }
             Spacer(modifier = Modifier.height(16.dp))
+
             MovieList(navController = navController)
 
         }

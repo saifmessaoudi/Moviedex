@@ -18,9 +18,11 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
+import androidx.compose.material.Snackbar
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.filled.StarBorder
 import androidx.compose.runtime.Composable
@@ -45,6 +47,8 @@ import com.example.moviedex.ui.theme.Roboto
 import com.example.moviedex.util.Resource
 import kotlinx.coroutines.launch
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 
 @SuppressLint("CoroutineCreationDuringComposition")
 @Composable
@@ -108,6 +112,46 @@ fun MovieDetailScreen(
                     )
                 }
             }
+            var isFavorite = false
+         Box(modifier = Modifier.fillMaxSize()) {
+             if (movieDetail is Resource.Success) {
+                 movieDetail.data?.let {
+                        CoroutineScope(Dispatchers.IO).launch {
+                            isFavorite = favoriteViewModel.isFavorite(it)
+                        }
+                     IconButton(
+                         onClick = {
+                             viewModel.viewModelScope.launch {
+                                 if (isFavorite) {
+                                     favoriteViewModel.removeFavorite(it)
+                                 } else {
+                                     favoriteViewModel.addFavorite(it)
+                                 }
+                             }
+                         },
+                         modifier = Modifier
+                             .align(Alignment.TopEnd)
+                             .padding(end = 16.dp, top = topPadding)
+                     ) {
+                         if (isFavorite) {
+                             Icon(
+                                 imageVector = Icons.Default.Star,
+                                 contentDescription = null,
+                                 tint = androidx.compose.ui.graphics.Color.Yellow,
+                                 modifier = Modifier.size(36.dp)
+                             )
+                         } else {
+                             Icon(
+                                 imageVector = Icons.Default.StarBorder,
+                                 contentDescription = null,
+                                 tint = androidx.compose.ui.graphics.Color.Yellow,
+                                 modifier = Modifier.size(36.dp)
+                             )
+                         }
+                     }
+                 }
+             }
+         }
         }
     }
 }
